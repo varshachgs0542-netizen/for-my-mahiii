@@ -1,1 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>For You, Honey 🤍</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #0e0e10;
+      color: #f7f4ef;
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    .screen {
+      min-height: 100vh;
+      padding: 35px 22px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      animation: fade .5s ease;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    .eyebrow {
+      color: #88848b;
+      font-size: 11px;
+      letter-spacing: 3px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    h1, h2 {
+      font-family: "Playfair Display", serif;
+      font-weight: 500;
+      line-height: 1.08;
+    }
+
+    h1 {
+      font-size: clamp(45px, 10vw, 82px);
+    }
+
+    h2 {
+      font-size: clamp(32px, 7vw, 55px);
+      max-width: 750px;
+    }
+
+    em {
+      color: #efd5c8;
+      font-style: normal;
+    }
+
+    p {
+      color: #aaa6a1;
+      line-height: 1.7;
+    }
+
+    .lead {
+      max-width: 620px;
+      margin-top: 20px;
+      font-size: 17px;
+    }
+
+    .tiny {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #66636a;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .btn {
+      margin-top: 32px;
+      border: 0;
+      padding: 15px 21px;
+      border-radius: 12px;
+      background: #f7f4ef;
+      color: #111;
+      font-weight: 700;
+      font-size: 15px;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: min(520px, 100%);
+      margin-top: 32px;
+    }
+
+    .choice {
+      border: 1px solid #2c2c31;
+      background: #17171b;
+      color: #f7f4ef;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 15px;
+      transition: .2s;
+    }
+
+    .choice:hover {
+      border-color: #777;
+      transform: translateY(-2px);
+    }
+
+    .reaction {
+      min-height: 28px;
+      margin-top: 20px;
+      color: #efd5c8;
+    }
+
+    .photo {
+      width: min(380px, 90vw);
+      height: min(62vh, 540px);
+      object-fit: cover;
+      border-radius: 22px;
+      margin-bottom: 30px;
+      box-shadow: 0 15px 50px rgba(0,0,0,.35);
+    }
+
+    .letter {
+      width: min(680px, 100%);
+      margin-top: 30px;
+      padding: 28px;
+      text-align: left;
+      background: #17171b;
+      border: 1px solid #2c2c31;
+      border-radius: 20px;
+    }
+
+    .letter p {
+      margin-bottom: 17px;
+      color: #d0cdca;
+      font-size: 16px;
+    }
+
+    .letter p:last-child {
+      margin-bottom: 0;
+    }
+
+    .final-number {
+      font-family: "Playfair Display", serif;
+      font-size: 105px;
+      color: #efd5c8;
+      line-height: 1;
+      margin-bottom: 15px;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      pointer-events: none;
+      animation: float 3s ease-out forwards;
+      z-index: 10;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      to {
+        transform: translateY(-105vh) rotate(20deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- INTRO -->
+  <section class="screen active" id="intro">
+
+    <div class="eyebrow">A VERY IMPORTANT WEBSITE</div>
+
+    <h1>
+      Okay, honey…<br>
+      <em>I made you something.</em>
+    </h1>
+
+    <p class="lead">
+      Please don't judge the amount of effort before you actually see the whole thing. 😭
+    </p>
+
+    <button class="btn" onclick="show('q1')">
+      I'm listening 👀 →
+    </button>
+
+    <p class="tiny">
+      Made specifically for one person.
+    </p>
+
+  </section>
+
+
+  <!-- QUESTION 1 -->
+  <section class="screen" id="q1">
+
+    <div class="eyebrow">BE HONEST</div>
+
+    <h2>
+      If someone made a whole website for your birthday…
+    </h2>
+
+    <p class="lead">
+      would you actually explore all of it?
+    </p>
+
+    <div class="choices">
+
+      <button class="choice" onclick="answer1('yes')">
+        Obviously yes.
+      </button>
+
+      <button class="choice" onclick="answer1('maybe')">
+        Depends how good it is.
+      </button>
+
+    </div>
+
+    <div class="reaction" id="reaction"></div>
+
+    <button
+      class="btn"
+      id="continue1"
+      style="display:none"
+      onclick="show('q2')">
+      Fine, continue →
+    </button>
+
+  </section>
+
+
+  <!-- QUESTION 2 -->
+  <section class="screen" id="q2">
+
+    <div class="eyebrow">QUICK ONE</div>
+
+    <h2>
+      Pick your ideal birthday mood.
+    </h2>
+
+    <div class="choices">
+
+      <button class="choice" onclick="show('photo1')">
+        Good food + peace.
+      </button>
+
+      <button class="choice" onclick="show('photo1')">
+        Good people + no drama.
+      </button>
+
+      <button class="choice" onclick="show('photo1')">
+        Cricket + everything else later. 🏏
+      </button>
+
+    </div>
+
+    <p class="tiny">
+      There was only one correct answer in my head anyway.
+    </p>
+
+  </section>
+
+
+  <!-- PHOTO 1 -->
+  <section class="screen" id="photo1">
+
+    <img
+      class="photo"
+      src="assets/photo1.jpg"
+      alt="Birthday memory">
+
+    <div class="eyebrow">ONE OF MY FAVOURITES</div>
+
+    <h2>
+      See, this is exactly why I needed to make this. 😭
+    </h2>
+
+    <p class="lead">
+      Some pictures are just pictures. Some somehow make you stop scrolling for a second.
+    </p>
+
+    <button class="btn" onclick="show('photo2')">
+      Keep going →
+    </button>
+
+  </section>
+
+
+  <!-- PHOTO 2 -->
+  <section class="screen" id="photo2">
+
+    <img
+      class="photo"
+      src="assets/photo2.jpg"
+      alt="A memory">
+
+    <div class="eyebrow">THIS ONE HAD TO BE HERE</div>
+
+    <h2>
+      Okay… this one is special.
+    </h2>
+
+    <p class="lead">
+      Not because it's perfect. Just because it feels like one of those little moments worth keeping.
+    </p>
+
+    <button class="btn" onclick="show('photo3')">
+      One more →
+    </button>
+
+  </section>
+
+
+  <!-- PHOTO 3 -->
+  <section class="screen" id="photo3">
+
+    <img
+      class="photo"
+      src="assets/photo3.jpg"
+      alt="Birthday memory">
+
+    <div class="eyebrow">LAST PHOTO, PROMISE</div>
+
+    <h2>
+      Okay, enough staring at yourself. 😂
+    </h2>
+
+    <p class="lead">
+      I actually have something to tell you.
+    </p>
+
+    <button class="btn" onclick="show('letter')">
+      Okay, say it.
+    </button>
+
+  </section>
+
+
+  <!-- MESSAGE -->
+  <section class="screen" id="letter">
+
+    <div class="eyebrow">NO JOKES FOR A SECOND</div>
+
+    <h2>
+      One thing, bubu.
+    </h2>
+
+    <div class="letter">
+
+      <p>
+        I don't know what the future is going to look like,
+        and I don't want to make some huge promise about things
+        neither of us can predict.
+      </p>
+
+      <p>
+        But right now, you're here.
+        And while we're together, I want to make the time we have
+        genuinely beautiful.
+      </p>
+
+      <p>
+        I may not be able to do everything I want to do for you today.
+        <strong>Yet.</strong>
+        But I want to keep growing, keep trying,
+        and keep finding little ways to make your life a little happier.
+      </p>
+
+      <p>
+        That's it. No dramatic speech.
+        Just something I really wanted you to know. 🤍
+      </p>
+
+    </div>
+
+    <button class="btn" onclick="show('question3')">
+      One last thing…
+    </button>
+
+  </section>
+
+
+  <!-- QUESTION 3 -->
+  <section class="screen" id="question3">
+
+    <div class="eyebrow">A LITTLE QUESTION</div>
+
+    <h2>
+      So, meri jaan…
+    </h2>
+
+    <p class="lead">
+      Will you let me keep making these little things for you?
+    </p>
+
+    <div class="choices">
+
+      <button class="choice" onclick="yesAnswer()">
+        Yes, obviously. 🤍
+      </button>
+
+      <button
+        class="choice"
+        id="noButton"
+        onclick="noAnswer()">
+        Let me think…
+      </button>
+
+    </div>
+
+    <p class="tiny" id="finalReply"></p>
+
+  </section>
+
+
+  <!-- FINAL -->
+  <section class="screen" id="final">
+
+    <div class="eyebrow">HAPPY BIRTHDAY</div>
+
+    <div class="final-number">24</div>
+
+    <h1>
+      Happy Birthday,<br>
+      <em>my shona. 🤍</em>
+    </h1>
+
+    <p class="lead">
+      I hope this year gives you plenty of reasons to smile,
+      plenty of things to be proud of,
+      and a lot of really good days.
+    </p>
+
+    <p class="tiny">
+      And yes… I know you were waiting for the cricket reference. 🏏
+    </p>
+
+    <button class="btn" onclick="show('intro')">
+      Replay because you liked it. 😌
+    </button>
+
+  </section>
+
+
+  <script>
+
+    function show(id) {
+
+      document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+          screen.classList.remove("active");
+        });
+
+      document
+        .getElementById(id)
+        .classList.add("active");
+
+      window.scrollTo(0, 0);
+    }
+
+
+    function answer1(type) {
+
+      const reaction =
+        document.getElementById("reaction");
+
+      const next =
+        document.getElementById("continue1");
+
+      if (type === "yes") {
+
+        reaction.innerText =
+          "Good. I expected nothing less. 😌";
+
+      } else {
+
+        reaction.innerText =
+          "Wow. So now I have to prove my website-making skills? 😭";
+
+      }
+
+      next.style.display = "inline-block";
+    }
+
+
+    const noButton =
+      document.getElementById("noButton");
+
+    noButton.addEventListener("mouseenter", () => {
+
+      const x =
+        Math.random() * 120 - 60;
+
+      const y =
+        Math.random() * 80 - 40;
+
+      noButton.style.transform =
+        `translate(${x}px, ${y}px)`;
+
+    });
+
+
+    function noAnswer() {
+
+      document.getElementById("finalReply").innerText =
+        "Take your time… but that button isn't helping your case. 😂";
+
+    }
+
+
+    function yesAnswer() {
+
+      createHearts();
+
+      setTimeout(() => {
+        show("final");
+      }, 500);
+
+    }
+
+
+    function createHearts() {
+
+      for (let i = 0; i < 20; i++) {
+
+        const heart =
+          document.createElement("span");
+
+        heart.className = "heart";
+
+        heart.innerText =
+          ["🤍", "♡", "✨"]
+          [Math.floor(Math.random() * 3)];
+
+        heart.style.left =
+          Math.random() * 100 + "%";
+
+        heart.style.animationDelay =
+          Math.random() * .5 + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 3500);
+
+      }
+
+    }
+
+  </script>
+
+</body>
+        </html>
